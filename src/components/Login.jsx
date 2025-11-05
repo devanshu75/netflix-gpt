@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
-import { validateName } from "../utils/validate";
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -42,7 +42,6 @@ const Login = () => {
         password.current.value
       )
         .then((userCredential) => {
-          // Signed up
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
@@ -90,9 +89,6 @@ const Login = () => {
           setErrorMessage(errorCode + "," + errorMessage);
         });
     }
-
-    const nameError = validateName(name);
-    setErrorMessage(nameError);
   };
 
   return (
@@ -130,7 +126,7 @@ const Login = () => {
           ref={password}
           type="password"
           placeholder="Password"
-          className="p-4  my-4 w-full bg-gray-600"
+          className="p-4 my-4 w-full bg-gray-600"
         />
         <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
         <button
